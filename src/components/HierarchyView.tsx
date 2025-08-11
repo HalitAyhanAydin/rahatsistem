@@ -107,7 +107,7 @@ const HierarchyView: React.FC<HierarchyViewProps> = ({ hierarchy }) => {
       <div className="text-center py-12">
         <div className="text-gray-500 text-lg">Henüz veri bulunmamaktadır.</div>
         <p className="text-gray-400 mt-2">
-          Lütfen verileri senkronize etmek için "Senkronize Et" butonuna tıklayın.
+          Lütfen verileri senkronize etmek için &quot;Senkronize Et&quot; butonuna tıklayın.
         </p>
       </div>
     )

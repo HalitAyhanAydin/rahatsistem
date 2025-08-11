@@ -20,7 +20,7 @@ export default function Home() {
       
       // API base URL - production vs development
       const apiBase = process.env.NODE_ENV === 'production' 
-        ? 'https://rahatsistem-backend.railway.app' 
+        ? 'https://your-backend-url-from-railway.app' 
         : '';
       
       // Fetch accounts and hierarchy
@@ -48,7 +48,7 @@ export default function Home() {
   const handleSync = async () => {
     try {
       const apiBase = process.env.NODE_ENV === 'production' 
-        ? 'https://rahatsistem-backend.railway.app' 
+        ? 'https://your-backend-url-from-railway.app' 
         : '';
         
       const response = await fetch(`${apiBase}/api/sync`, { method: 'POST' })
