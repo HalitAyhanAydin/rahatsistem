@@ -1,54 +1,106 @@
 # Test API Veri Dökümantasyonu
 
-Bu proje, API üzerinden alınan verilerin hierarchical olarak görüntülenmesi için geliştirilmiş full-stack bir uygulamadır.
+Bu proje, harici API'den veri çekerek PostgreSQL veritabanına senkronize eden ve hiyerarşik yapıda web sayfasında gösteren full-stack bir uygulamadır.
 
-## 🚀 Özellikler
+## 🌐 Canlı Demo
 
-- **API Entegrasyonu**: External API'den token alma ve veri çekme
-- **Veritabanı Senkronizasyonu**: PostgreSQL ile otomatik veri senkronizasyonu
-- **Hierarchical Görünüm**: 3 seviyeli hesap kodu kırılımları
-- **Real-time Updates**: Periyodik veri güncelleme
-- **Responsive Design**: Modern ve kullanıcı dostu arayüz
+- **GitHub Repository**: [https://github.com/HalitAyhanAydin/rahatsistem](https://github.com/HalitAyhanAydin/rahatsistem)
+- **Frontend (Vercel)**: [Yakında eklenecek]
+- **Backend API**: [Yakında eklenecek]
 
-## 🛠️ Teknolojiler
+## � Teknolojiler
 
-- **Backend**: Node.js + Express.js
-- **Database**: PostgreSQL 14
-- **Frontend**: Next.js 15 + React 19 + TypeScript
+- **Backend**: Node.js + Express.js (Port 3001)
+- **Database**: PostgreSQL  
+- **Frontend**: Next.js + React + TypeScript (Port 3000)
 - **Styling**: Tailwind CSS
-- **HTTP Client**: Axios
-- **Cron Jobs**: node-cron
+- **API Integration**: FileMaker API
+- **Deployment**: Vercel (Frontend) + Railway/Heroku (Backend)
 
-## 📋 Gereksinimler
+## � Proje Yapısı
 
-- Node.js 18+
-- PostgreSQL 14+
-- npm veya yarn
+```
+/
+├── server/
+│   └── index.js           # Express.js backend
+├── src/
+│   ├── app/
+│   │   ├── page.tsx       # Ana sayfa
+│   │   ├── layout.tsx     # Layout wrapper
+│   │   └── globals.css    # Global stiller
+│   └── components/
+│       ├── HierarchyView.tsx    # Hiyerarşik görünüm
+│       └── SyncControls.tsx     # Senkronizasyon kontrolleri
+├── .env.local             # Çevre değişkenleri
+├── package.json           # NPM bağımlılıkları
+└── README.md              # Bu dosya
+```
 
 ## 🔧 Kurulum
 
-1. **Repository'yi klonlayın**
-   ```bash
-   git clone <repository-url>
-   cd Rahatsistem
-   ```
+### 1. Repository'yi klonlayın
+```bash
+git clone https://github.com/HalitAyhanAydin/rahatsistem.git
+cd rahatsistem
+```
 
-2. **Bağımlılıkları yükleyin**
-   ```bash
-   npm install
-   ```
+### 2. Bağımlılıkları yükleyin
+```bash
+npm install
+```
 
-3. **PostgreSQL'i kurun ve çalıştırın**
-   ```bash
-   brew install postgresql@14
-   brew services start postgresql@14
-   ```
+### 3. Çevre değişkenlerini ayarlayın
+`.env.local` dosyası oluşturun:
 
-4. **Veritabanını oluşturun**
-   ```bash
-   createdb testapi_db
-   createuser -s testapi_user
-   ```
+```bash
+# Database Configuration
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=testapi_db
+DB_USER=testapi_user
+DB_PASSWORD=testapi_password
+
+# API Configuration
+API_USERNAME=apitest
+API_PASSWORD=test123
+API_TOKEN_URL=https://efatura.etrsoft.com/fmi/data/v1/databases/testdb/sessions
+API_DATA_URL=https://efatura.etrsoft.com/fmi/data/v1/databases/testdb/layouts/testdb/records/1
+
+# Server Configuration
+FRONTEND_PORT=3000
+BACKEND_PORT=3001
+```
+
+### 4. PostgreSQL veritabanını ayarlayın
+```bash
+# PostgreSQL kurulumu (macOS)
+brew install postgresql
+brew services start postgresql
+
+# Veritabanı ve kullanıcı oluşturma
+createdb testapi_db
+createuser testapi_user
+```
+
+## 🚀 Çalıştırma
+
+### Geliştirme Ortamı
+```bash
+# Frontend (port 3000)
+npm run dev
+
+# Backend (port 3001) 
+npm run server
+
+# Her ikisini birden
+npm run dev & npm run server
+```
+
+### Production Build
+```bash
+npm run build
+npm start
+```
 
 5. **Environment variables'ları yapılandırın**
    `.env.local` dosyasını oluşturun:

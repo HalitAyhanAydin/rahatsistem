@@ -18,10 +18,15 @@ export default function Home() {
     try {
       setLoading(true)
       
+      // API base URL - production vs development
+      const apiBase = process.env.NODE_ENV === 'production' 
+        ? 'https://rahatsistem-backend.railway.app' 
+        : '';
+      
       // Fetch accounts and hierarchy
       const [accountsRes, hierarchyRes] = await Promise.all([
-        fetch('/api/accounts'),
-        fetch('/api/accounts/hierarchy')
+        fetch(`${apiBase}/api/accounts`),
+        fetch(`${apiBase}/api/accounts/hierarchy`)
       ])
       
       if (accountsRes.ok && hierarchyRes.ok) {
@@ -42,7 +47,11 @@ export default function Home() {
 
   const handleSync = async () => {
     try {
-      const response = await fetch('/api/sync', { method: 'POST' })
+      const apiBase = process.env.NODE_ENV === 'production' 
+        ? 'https://rahatsistem-backend.railway.app' 
+        : '';
+        
+      const response = await fetch(`${apiBase}/api/sync`, { method: 'POST' })
       if (response.ok) {
         setLastSync(new Date())
         await fetchData()
